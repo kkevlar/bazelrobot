@@ -1,0 +1,6 @@
+/ino/
+test
+sftp-config.json
+/libs/
+*.sublime-workspace
+*.sublime-project
