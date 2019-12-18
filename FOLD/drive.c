@@ -43,19 +43,6 @@ int16_t direction_to_degrees(direction_t dir)
     return 0;
 }
 
-int16_t drive_easy_atan(int16_t fb, int16_t rl)
-{
-    int16_t deg;
-    double rad;
-
-    rad = atan2((double)fb, (double)rl);
-    rad *= 180.0f;
-    rad /= 3.1415f;
-
-    deg = (int16_t)rad;
-    return deg;
-}
-
 void drive_fix_vector(drive_vector_t* vec)
 {
     if (vec->speed < 0)
