@@ -20,7 +20,7 @@ cc_library(
     deps = [
         "//cmocka:cmocka",
         "//robot/logic:drive_c_as_hdr",
-        "//robot/logic:wheel_hdr",
+        "//robot/hwhdrs:wheel_hdr",
         ],
 )
 
