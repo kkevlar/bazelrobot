@@ -19,8 +19,8 @@ cc_library(
     srcs = ["test_drive.c"],
     deps = [
         "//cmocka:cmocka",
-        "//FOLD:drive_c_as_hdr",
-        "//FOLD:wheel_hdr",
+        "//robot/logic:drive_c_as_hdr",
+        "//robot/logic:wheel_hdr",
         ],
 )
 

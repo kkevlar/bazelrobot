@@ -1,14 +1,15 @@
 
 #include "control.h"
+#include <stdint.h>
 
-float signum(float f)
+static float signum(float f)
 {
     if (f > 0) return 1;
     if (f < 0) return -1;
     return 1;
 }
 
-float float_abs(float f)
+static float float_abs(float f)
 {
     if (f < 0)
         return f * -1;
@@ -16,34 +17,13 @@ float float_abs(float f)
         return f;
 }
 
-uint8_t u8_max(uint8_t a, uint8_t b)
+static uint8_t u8_max(uint8_t a, uint8_t b)
 {
     if (a > b)
         return a;
     else
         return b;
 }
-
-/*
-void fill_p_control_result_default(struct p_control_result* result, struct
-p_control_args* args)
-{
-    result->result_speed = 0;
-    result->end_condition_count = args->max_end_condition_count;
-}
-
-void fill_p_control_args_default(struct p_control_args* args)
-{
-    args->pin_ultrasonic = PIN_ULTRASONIC_ECHO_FRONT;
-    args->mm_target = 100;
-    args->mm_cutoff = 110;
-    args->pk = 1;
-    args->max_speed = 255;
-    args->abs_speed_dead_zone = 20;
-    args->abs_speed_boost_zone = 60;
-    args->pin_switch = PIN_SWITCH_FRONT;
-    args->echo_data_buf_count = 1;
-}*/
 
 void control_clear_result(struct p_control_result* result)
 {
@@ -56,7 +36,7 @@ void control_clear_result(struct p_control_result* result)
     for (i = 0; i < ECHO_DATAS_MAX_BUF; i++) result->echo_datas[i] = 0;
 }
 
-float echo_read_buffered(struct p_control_result* result,
+static float echo_read_buffered(struct p_control_result* result,
                          struct p_control_args* args)
 {
     float sum;
@@ -84,7 +64,7 @@ float echo_read_buffered(struct p_control_result* result,
 }
 
 float control_treat_speed(float speed,
-                          float max,
+                          float max_speed,
                           float dead_zone,
                           float boost_zone)
 {
@@ -92,8 +72,8 @@ float control_treat_speed(float speed,
         speed = 0;
     else if (float_abs(speed) < float_abs(boost_zone))
         speed = float_abs(boost_zone) * signum(speed);
-    if (float_abs(speed) > float_abs(max))
-        speed = float_abs(max) * signum(speed);
+    if (float_abs(speed) > float_abs(max_speed))
+        speed = float_abs(max_speed) * signum(speed);
 
     return speed;
 }
@@ -125,3 +105,4 @@ void p_control_non_block(struct p_control_result* result,
             result->end_condition_count--;
     }
 }
+

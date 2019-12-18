@@ -8,25 +8,18 @@
 
 #define UNUSED(arg) ((void)arg)
 
-#include "FOLD/drive.h"
+#include "robot/logic/drive.h"
 
-void wheel_init(void) {
-}
+void wheel_init(void) {}
 
 void set_speed(uint8_t wheel, int16_t speed, int time)
 {
-    UNUSED(wheel);
-    UNUSED(speed);
-    UNUSED(time);
+    check_expected(wheel);
+    check_expected(speed);
+    check_expected(time);
 }
 
-float echo_test_mm(uint8_t pin)
-{
-    UNUSED(pin);
-    return 0;
-}
-
-#include "FOLD/drive.c"
+#include "robot/logic/drive.c"
 
 static void test_combine_easy(void** state)
 {
@@ -122,6 +115,27 @@ static void test_combine_complicated_with_max(void** state)
     assert_int_equal(315, result.degrees);
 }
 
+static void test_go_stop(void** state)
+{
+    expect_value(set_speed, wheel, WHEEL_FL);
+    expect_value(set_speed, speed, 0);
+    expect_value(set_speed, time, 0);
+
+    expect_value(set_speed, wheel, WHEEL_FR);
+    expect_value(set_speed, speed, 0);
+    expect_value(set_speed, time, 0);
+
+    expect_value(set_speed, wheel, WHEEL_BL);
+    expect_value(set_speed, speed, 0);
+    expect_value(set_speed, time, 0);
+
+    expect_value(set_speed, wheel, WHEEL_BR);
+    expect_value(set_speed, speed, 0);
+    expect_value(set_speed, time, 0);
+
+    go_stop();
+}
+
 int main(void)
 {
     const struct CMUnitTest combine[] = {
@@ -132,5 +146,12 @@ int main(void)
         cmocka_unit_test(test_combine_complicated_with_max),
     };
 
-    return cmocka_run_group_tests(combine, NULL, NULL);
+    const struct CMUnitTest go[] = {
+        cmocka_unit_test(test_go_stop),
+    };
+
+    int success = 0;
+    success |= cmocka_run_group_tests(combine, NULL, NULL);
+    success |= cmocka_run_group_tests(go, NULL, NULL);
+    return success;
 }
