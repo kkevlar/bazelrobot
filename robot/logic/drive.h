@@ -1,7 +1,8 @@
 #ifndef DRIVE_H
 #define DRIVE_H
 
-#include "wiring.h"
+#include <inttypes.h>
+#include "robot/logic/robottypes.h"
 
 struct _drive_vector_t_
 {

@@ -1,15 +1,15 @@
 
 
 cc_library(
-    name = "wiring_hdr",
-    hdrs = ["wiring.h"],
+    name = "robottypes_hdr",
+    hdrs = ["robottypes.h"],
     visibility = ["//visibility:public"],
 )
 
 cc_library(
     name = "drive_hdr",
     hdrs = ["drive.h"],
-    deps = [":wiring_hdr",],
+    deps = [":robottypes_hdr",],
     visibility = ["//visibility:public"],
 )
 
@@ -52,6 +52,7 @@ cc_library(
     textual_hdrs = ["control.c"],
     deps = [
         ":control_hdr",
+        "//robot/hwhdrs:echo_hdr",
         ],
     visibility = ["//visibility:public"],
 )
@@ -69,6 +70,7 @@ cc_library(
     srcs = ["control.c"],
     deps = [
         ":control_hdr",
+        "//robot/hwhdrs:echo_hdr",
         ],
     visibility = ["//visibility:public"],
 )

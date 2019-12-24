@@ -1,10 +1,6 @@
 #ifndef CONTROL_H
 #define CONTROL_H
 
-#include "echo.h"
-#include "testoptions.h"
-#include "wiring.h"
-
 #define ECHO_DATAS_MAX_BUF 10
 
 struct p_control_result

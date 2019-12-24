@@ -1,6 +1,8 @@
 
-#include "control.h"
+#include "robot/logic/control.h"
 #include <stdint.h>
+
+#include "robot/hwhdrs/echo.h"
 
 static float signum(float f)
 {
@@ -32,6 +34,7 @@ void control_clear_result(struct p_control_result* result)
     result->result_speed = 0;
     result->end_condition_count = 0;
     result->echo_datas_index = 0;
+    result->echo_avg = 0;
 
     for (i = 0; i < ECHO_DATAS_MAX_BUF; i++) result->echo_datas[i] = 0;
 }
