@@ -117,6 +117,8 @@ static void test_combine_complicated_with_max(void** state)
 
 static void test_go_stop(void** state)
 {
+  UNUSED(state);
+
     expect_value(set_speed, wheel, WHEEL_FL);
     expect_value(set_speed, speed, 0);
     expect_value(set_speed, time, 0);
