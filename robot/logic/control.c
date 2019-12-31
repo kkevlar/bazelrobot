@@ -57,7 +57,7 @@ static float echo_read_buffered(struct p_control_result* result,
     {
         temp = result->echo_datas[i];
         sum += temp;
-        if (temp > 0.001) count++;
+        if (temp > args->mm_filter) count++;
     }
 
     sum /= (float)(u8_max(count, 1));

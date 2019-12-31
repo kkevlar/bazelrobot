@@ -11,8 +11,8 @@
 #include "robot/logic/control.c"
 
 float echo_test_mm(uint8_t pin) {
- UNUSED(pin); 
-  return 0;
+ check_expected(pin); 
+  return (float) mock();
 }
 
 static void test_clear_result(void** state)
@@ -98,6 +98,77 @@ static void test_treat_boost(void** state)
                 assert_float_similar(expect, result);
 }
 
+static void test_read_buffered_two(void** state) 
+{
+
+  UNUSED(state);
+
+struct p_control_result result;
+struct p_control_args args;
+
+args.echo_data_buf_count = 2;
+args.pin_ultrasonic = 221;
+args.mm_filter = -1;
+
+control_clear_result(&result);
+
+    float actual;
+    float expected;
+
+expect_value(echo_test_mm, pin, 221);
+will_return(echo_test_mm, 200);
+actual  = echo_read_buffered(&result, &args);
+expected = 100;
+  assert_float_similar(expected,actual);
+
+expect_value(echo_test_mm, pin, 221);
+will_return(echo_test_mm, 200);
+actual  = echo_read_buffered(&result, &args);
+expected = 200;
+  assert_float_similar(expected,actual);
+}
+
+static void test_read_buffered_one(void** state) 
+{
+
+  UNUSED(state);
+
+struct p_control_result result;
+struct p_control_args args;
+
+args.echo_data_buf_count = 1;
+args.pin_ultrasonic = 221;
+args.mm_filter = 1;
+
+control_clear_result(&result);
+
+    float actual;
+    float expected;
+
+expect_value(echo_test_mm, pin, 221);
+will_return(echo_test_mm, 0);
+actual  = echo_read_buffered(&result, &args);
+expected = 0;
+  assert_float_similar(expected,actual);
+
+expect_value(echo_test_mm, pin, 221);
+will_return(echo_test_mm, 100);
+actual  = echo_read_buffered(&result, &args);
+expected = 100;
+  assert_float_similar(expected,actual);
+
+expect_value(echo_test_mm, pin, 221);
+will_return(echo_test_mm, 0);
+actual  = echo_read_buffered(&result, &args);
+expected = 0;
+  assert_float_similar(expected,actual);
+
+expect_value(echo_test_mm, pin, 221);
+will_return(echo_test_mm, 10);
+actual  = echo_read_buffered(&result, &args);
+expected = 10;
+  assert_float_similar(expected,actual);
+}
 
 int main(void)
 {
@@ -112,8 +183,14 @@ int main(void)
         cmocka_unit_test(test_treat_boost),
     };
 
+    const struct CMUnitTest read_buffered[] = {
+        cmocka_unit_test(test_read_buffered_two),
+          cmocka_unit_test(test_read_buffered_one),
+    };
+
     int success = 0;
     success |= cmocka_run_group_tests(clear, NULL, NULL);
     success |= cmocka_run_group_tests(treat, NULL, NULL);
+    success |= cmocka_run_group_tests(read_buffered, NULL, NULL);
     return success;
 }
