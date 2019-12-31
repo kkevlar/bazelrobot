@@ -170,6 +170,143 @@ expected = 10;
   assert_float_similar(expected,actual);
 }
 
+static void test_speed_pcontrol_towards(void** state) 
+{
+  UNUSED(state);
+
+struct p_control_result result;
+struct p_control_args args;
+
+args.echo_data_buf_count = 1;
+args.pin_ultrasonic = 221;
+args.mm_target = 50;
+args.mm_accuracy = 10;
+args.mm_filter = 1;
+args.pk = 1000.0f;
+args.max_speed = 255;
+args.abs_speed_dead_zone = 20;
+args.abs_speed_boost_zone = 30;
+
+control_clear_result(&result);
+
+expect_value(echo_test_mm, pin, 221);
+will_return(echo_test_mm, 200);
+p_control_non_block(&result, &args);
+
+assert_int_equal(255, result.result_speed);
+}
+
+static void test_speed_pcontrol_away(void** state) 
+{
+
+  UNUSED(state);
+
+struct p_control_result result;
+struct p_control_args args;
+
+args.echo_data_buf_count = 1;
+args.pin_ultrasonic = 221;
+args.mm_target = 500;
+args.mm_accuracy = 10;
+args.mm_filter = 1;
+args.pk = 1000.0f;
+args.max_speed = 255;
+args.abs_speed_dead_zone = 20;
+args.abs_speed_boost_zone = 30;
+
+control_clear_result(&result);
+
+expect_value(echo_test_mm, pin, 221);
+will_return(echo_test_mm, 200);
+p_control_non_block(&result, &args);
+
+assert_int_equal(-255, result.result_speed);
+}
+
+static void test_speed_pcontrol_stop(void** state) 
+{
+
+  UNUSED(state);
+
+struct p_control_result result;
+struct p_control_args args;
+
+args.echo_data_buf_count = 1;
+args.pin_ultrasonic = 221;
+args.mm_target = 500;
+args.mm_accuracy = 10;
+args.mm_filter = 1;
+args.pk = 1000.0f;
+args.max_speed = 255;
+args.abs_speed_dead_zone = 2;
+args.abs_speed_boost_zone = 100;
+
+control_clear_result(&result);
+
+expect_value(echo_test_mm, pin, 221);
+will_return(echo_test_mm, 500);
+p_control_non_block(&result, &args);
+
+assert_int_equal(0, result.result_speed);
+}
+
+static void test_cond_pcontrol_away(void** state) 
+{
+
+  UNUSED(state);
+
+struct p_control_result result;
+struct p_control_args args;
+
+args.echo_data_buf_count = 1;
+args.pin_ultrasonic = 221;
+args.mm_target = 500;
+args.mm_accuracy = 10;
+args.mm_filter = 1;
+args.pk = 1000.0f;
+args.max_speed = 255;
+args.abs_speed_dead_zone = 20;
+args.abs_speed_boost_zone = 30;
+
+control_clear_result(&result);
+
+result.end_condition_count = 1;
+
+expect_value(echo_test_mm, pin, 221);
+will_return(echo_test_mm, 200);
+p_control_non_block(&result, &args);
+
+assert_int_equal(0, result.end_condition_count);
+}
+
+static void test_cond_pcontrol_stop(void** state) 
+{
+
+  UNUSED(state);
+
+struct p_control_result result;
+struct p_control_args args;
+
+args.echo_data_buf_count = 1;
+args.pin_ultrasonic = 221;
+args.mm_target = 500;
+args.mm_accuracy = 10;
+args.mm_filter = 1;
+args.pk = 1000.0f;
+args.max_speed = 255;
+args.abs_speed_dead_zone = 2;
+args.abs_speed_boost_zone = 100;
+
+control_clear_result(&result);
+
+result.end_condition_count = 2;
+
+expect_value(echo_test_mm, pin, 221);
+will_return(echo_test_mm, 500);
+p_control_non_block(&result, &args);
+
+assert_int_equal(3, result.end_condition_count);
+}
 int main(void)
 {
     const struct CMUnitTest clear[] = {
@@ -188,9 +325,22 @@ int main(void)
           cmocka_unit_test(test_read_buffered_one),
     };
 
+    const struct CMUnitTest pcontrol_speed[] = {
+        cmocka_unit_test(test_speed_pcontrol_away),
+        cmocka_unit_test(test_speed_pcontrol_towards),
+        cmocka_unit_test(test_speed_pcontrol_stop),
+    };
+
+    const struct CMUnitTest pcontrol_endcond[] = {
+        cmocka_unit_test(test_cond_pcontrol_stop),
+        cmocka_unit_test(test_cond_pcontrol_away),
+    };
+
     int success = 0;
     success |= cmocka_run_group_tests(clear, NULL, NULL);
     success |= cmocka_run_group_tests(treat, NULL, NULL);
     success |= cmocka_run_group_tests(read_buffered, NULL, NULL);
+    success |= cmocka_run_group_tests(pcontrol_speed, NULL, NULL);
+    success |= cmocka_run_group_tests(pcontrol_endcond , NULL, NULL);
     return success;
 }
