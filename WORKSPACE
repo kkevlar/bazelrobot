@@ -1,6 +1,7 @@
 workspace(name = "myproject")
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 
 # Group the sources of the library so that CMake rule have access to it
 all_content = """filegroup(name = "all", srcs = glob(["**"]), visibility = ["//visibility:public"])"""
@@ -11,6 +12,14 @@ http_archive(
    strip_prefix = "rules_foreign_cc-master",
    url = "https://github.com/bazelbuild/rules_foreign_cc/archive/master.zip",
    sha256 = "a2e43b2141cddce94999e26de8075031394ac11fb8075de8aa0b8e13905715ed",
+)
+
+git_repository(
+    name = "platformio_rules",
+    remote = "http://github.com/kkevlar/platformio_rules.git",
+    branch = "ugh",
+    #tag = "v0.0.9",
+    #commit = "d5db1f22ff5e3049b8e9cd19060357ef828cab75",
 )
 
 load("@rules_foreign_cc//:workspace_definitions.bzl", "rules_foreign_cc_dependencies")

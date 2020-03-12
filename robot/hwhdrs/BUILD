@@ -16,4 +16,18 @@ cc_library(
     visibility = ["//visibility:public"],
 )
 
+cc_library(
+    name = "switch_hdr",
+    hdrs = ["switch.h"],
+    visibility = ["//visibility:public"],
+)
+
+filegroup(
+    name = "switch_h_fg",
+    srcs = [
+        "switch.h",
+    ],
+    visibility = ["//visibility:public"],
+)
+
 

@@ -1,7 +1,5 @@
 
-#include "switch.h"
-
-
+#define SWITCH_COUNT_FOUR
 void switch_init(void)
 {
     #if defined(SWITCH_COUNT_FOUR) || \
