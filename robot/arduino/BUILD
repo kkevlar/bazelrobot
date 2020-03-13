@@ -12,6 +12,11 @@ platformio_library(
     hdr = "//robot/hwhdrs:switch_h_fg",
 )
 
+platformio_library(
+    name = "robottypes",
+    hdr = "//robot/logic:robottypes_h_fg",
+)
+
 platformio_project(
     name = "switch_project",
     src = "switchmain.cc",
@@ -19,6 +24,7 @@ platformio_project(
     framework = "arduino",
     platform = "atmelavr",
     deps = [
+        ":robottypes",
         ":switch",
     ],
     # If you need to you can pass multiple string key-value pairs directly

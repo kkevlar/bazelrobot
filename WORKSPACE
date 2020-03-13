@@ -17,7 +17,7 @@ http_archive(
 git_repository(
     name = "platformio_rules",
     remote = "http://github.com/kkevlar/platformio_rules.git",
-    branch = "ugh",
+    branch = "fix-click",
     #tag = "v0.0.9",
     #commit = "d5db1f22ff5e3049b8e9cd19060357ef828cab75",
 )

@@ -1,4 +1,7 @@
 
+#include "switch.h"
+#include <Arduino.h>
+
 #define SWITCH_COUNT_FOUR
 void switch_init(void)
 {

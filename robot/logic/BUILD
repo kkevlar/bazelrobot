@@ -6,6 +6,14 @@ cc_library(
     visibility = ["//visibility:public"],
 )
 
+filegroup(
+    name = "robottypes_h_fg",
+    srcs = [
+        "robottypes.h",
+    ],
+    visibility = ["//visibility:public"],
+)
+
 cc_library(
     name = "drive_hdr",
     hdrs = ["drive.h"],
