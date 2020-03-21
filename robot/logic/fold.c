@@ -1,20 +1,27 @@
 #include "lcd.h"
+#include "wheel.h"
+#include "switch.h"
+#include "drive.h"
+#include "shoot.h"
+#include "collect.h"
+
+const char* const init_message = "Init......." ;
+const char* const success_message = " success! :) " ;
 
 void main_setup()
 {
     lcd_init();
 
-    lcd_print_top("Init.....");
+    lcd_print_top(init_message);
 
     wheel_init();
     switch_init();
     drive_init();
     echo_init();
-    aim_init();
     collect_init();
-    shoot_init();
+    hoot_init();
 
-    lcd_print_bot(" success! :)");
+    lcd_print_bot(success_mesage);
 }
 
 int num = 0;

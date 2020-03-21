@@ -45,6 +45,7 @@ platformio_library(
     src = "//robot/logic:fold_c_fg",
     hdr = "//robot/logic:fold_h_fg",
 )
+
 platformio_library(
     name = "liquidcrystal",
     src = "@auduino_liquidcrystal_i2c//:LiquidCrystal_I2C.cpp",
@@ -55,7 +56,7 @@ platformio_library(
     name = "lcd",
     src = "lcd.cc",
     hdr = "//robot/hwhdrs:lcd_h_fg",
-    deps = [":liquidcrystal",],
+    add_hdrs = ["@auduino_liquidcrystal_i2c//:LiquidCrystal_I2C.h",],
 )
 
 platformio_library(
@@ -70,6 +71,7 @@ platformio_project(
     framework = "arduino",
     platform = "atmelavr",
     deps = [
+        ":liquidcrystal",
         ":robottypes",
         ":switch",
         ":echo",
@@ -80,7 +82,6 @@ platformio_project(
         ":drive",
         ":control",
         ":fold",
-        ":liquidcrystal",
     ],
     # If you need to you can pass multiple string key-value pairs directly
     # to PlatformIO. All of these will appear under the environment section in

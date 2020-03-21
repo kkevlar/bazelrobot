@@ -29,7 +29,7 @@ void lcd_hello_world(void)
     #endif
 }
 
-void lcd_print_top(char* woo)
+void lcd_print_top(const char* woo)
 {
     #ifdef LCD_ENABLED
 
@@ -47,7 +47,7 @@ void lcd_print_top(char* woo)
 	#endif
 }
 
-void lcd_print_bot(char* woo)
+void lcd_print_bot(const char* woo)
 {
     #ifdef LCD_ENABLED
 
