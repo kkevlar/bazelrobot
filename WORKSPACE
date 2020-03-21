@@ -2,6 +2,7 @@ workspace(name = "myproject")
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
+load("@bazel_tools//tools/build_defs/repo:git.bzl", "new_git_repository")
 
 # Group the sources of the library so that CMake rule have access to it
 all_content = """filegroup(name = "all", srcs = glob(["**"]), visibility = ["//visibility:public"])"""
@@ -18,8 +19,23 @@ git_repository(
     name = "platformio_rules",
     remote = "http://github.com/kkevlar/platformio_rules.git",
     branch = "fix-click",
-    #tag = "v0.0.9",
-    #commit = "d5db1f22ff5e3049b8e9cd19060357ef828cab75",
+)
+
+new_git_repository(
+    name = "auduino_liquidcrystal_i2c",
+    remote = "http://github.com/kkevlar/LiquidCrystal_I2C.git",
+    branch = "master",
+    build_file_content = """
+exports_files(["LiquidCrystal_I2C.h"])
+exports_files(["LiquidCrystal_I2C.cpp"])
+
+# you can also create targets
+cc_library(
+    name = "liquidcrystal_library",
+    srcs = ["LiquidCrystal_I2C.cpp"],
+    hdrs = ["LiquidCrystal_I2C.h"],
+)
+""",
 )
 
 load("@rules_foreign_cc//:workspace_definitions.bzl", "rules_foreign_cc_dependencies")
