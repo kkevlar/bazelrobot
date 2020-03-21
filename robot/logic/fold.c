@@ -1,6 +1,4 @@
-#include "main.h"
-
-#ifndef TEST_NO_GAME
+#include "lcd.h"
 
 void main_setup()
 {
@@ -103,9 +101,6 @@ void main_loop()
 {
     go_stop();
 
-    #if defined(GAME_A)
         main_game_a_loop();
-    #endif
 }
 
-#endif

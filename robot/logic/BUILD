@@ -31,6 +31,14 @@ cc_library(
 )
 
 filegroup(
+    name = "drive_h_fg",
+    srcs = [
+        "drive.h",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+filegroup(
     name = "drive_c_fg",
     srcs = [
         "drive.c",
@@ -43,6 +51,89 @@ cc_library(
     srcs = ["drive.c"],
     deps = [
         ":drive_hdr",
+        "//robot/hwhdrs:wheel_hdr"],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "collect_hdr",
+    hdrs = ["collect.h"],
+    deps = [":robottypes_hdr",],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "collect_c_as_hdr",
+    textual_hdrs = ["collect.c"],
+    deps = [
+        ":collect_hdr",
+        "//robot/hwhdrs:wheel_hdr"],
+    visibility = ["//visibility:public"],
+)
+
+filegroup(
+    name = "collect_c_fg",
+    srcs = [
+        "collect.c",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+filegroup(
+    name = "collect_h_fg",
+    srcs = [
+        "collect.h",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "collect",
+    srcs = ["collect.c"],
+    deps = [
+        ":collect_hdr",
+        "//robot/hwhdrs:wheel_hdr"],
+    visibility = ["//visibility:public"],
+)
+
+
+cc_library(
+    name = "fold_hdr",
+    hdrs = ["fold.h"],
+    deps = [":robottypes_hdr",],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "fold_c_as_hdr",
+    textual_hdrs = ["fold.c"],
+    deps = [
+        ":fold_hdr",
+        "//robot/hwhdrs:wheel_hdr"],
+    visibility = ["//visibility:public"],
+)
+
+filegroup(
+    name = "fold_c_fg",
+    srcs = [
+        "fold.c",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+filegroup(
+    name = "fold_h_fg",
+    srcs = [
+        "fold.h",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "fold",
+    srcs = ["fold.c"],
+    deps = [
+        ":fold_hdr",
         "//robot/hwhdrs:wheel_hdr"],
     visibility = ["//visibility:public"],
 )
@@ -69,6 +160,14 @@ filegroup(
     name = "control_c_fg",
     srcs = [
         "control.c",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+filegroup(
+    name = "control_h_fg",
+    srcs = [
+        "control.h",
     ],
     visibility = ["//visibility:public"],
 )

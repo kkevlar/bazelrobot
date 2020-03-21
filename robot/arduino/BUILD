@@ -7,9 +7,49 @@ load(
 )
 
 platformio_library(
+    name = "echo",
+    src = "echo.cc",
+    hdr = "//robot/hwhdrs:echo_h_fg",
+)
+platformio_library(
+    name = "shoot",
+    src = "shoot.cc",
+    hdr = "//robot/hwhdrs:shoot_h_fg",
+)
+platformio_library(
+    name = "wheel",
+    src = "wheel.cc",
+    hdr = "//robot/hwhdrs:wheel_h_fg",
+)
+platformio_library(
+    name = "lcd",
+    src = "lcd.cc",
+    hdr = "//robot/hwhdrs:lcd_h_fg",
+)
+platformio_library(
     name = "switch",
     src = "switch.cc",
     hdr = "//robot/hwhdrs:switch_h_fg",
+)
+platformio_library(
+    name = "collect",
+    src = "//robot/logic:collect_c_fg",
+    hdr = "//robot/logic:collect_h_fg",
+)
+platformio_library(
+    name = "control",
+    src = "//robot/logic:control_c_fg",
+    hdr = "//robot/logic:control_h_fg",
+)
+platformio_library(
+    name = "drive",
+    src = "//robot/logic:drive_c_fg",
+    hdr = "//robot/logic:drive_h_fg",
+)
+platformio_library(
+    name = "fold",
+    src = "//robot/logic:fold_c_fg",
+    hdr = "//robot/logic:fold_h_fg",
 )
 
 platformio_library(
@@ -18,14 +58,22 @@ platformio_library(
 )
 
 platformio_project(
-    name = "switch_project",
-    src = "switchmain.cc",
+    name = "main_drive",
+    src = "main.cc",
     board = "uno",
     framework = "arduino",
     platform = "atmelavr",
     deps = [
         ":robottypes",
         ":switch",
+        ":echo",
+        ":lcd",
+        ":shoot",
+        ":wheel",
+        ":collect",
+        ":drive",
+        ":control",
+        ":fold",
     ],
     # If you need to you can pass multiple string key-value pairs directly
     # to PlatformIO. All of these will appear under the environment section in
@@ -37,12 +85,5 @@ platformio_project(
     }
 )
 
-genrule(
-   name = "drive",
-   srcs = ["//robot/logic:drive_c_fg"],
-   outs = ["drive.ino"],
-   cmd_bash = "cp $(SRCS) $(OUTS)",
-   
-    
-    )
+
 
