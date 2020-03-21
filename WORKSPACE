@@ -22,7 +22,24 @@ git_repository(
 )
 
 new_git_repository(
-    name = "auduino_liquidcrystal_i2c",
+    name = "adafruit_motor_shield",
+    remote = "https://github.com/adafruit/Adafruit_Motor_Shield_V2_Library",
+    branch = "master",
+    build_file_content = """
+exports_files(["Adafruit_MotorShield.cpp"])
+exports_files(["Adafruit_MotorShield.h"])
+
+# you can also create targets
+cc_library(
+    name = "motorshield_library",
+    srcs = ["Adafruit_MotorShield.cpp"],
+    hdrs = ["Adafruit_MotorShield.h"],
+)
+""",
+)
+
+new_git_repository(
+    name = "liquidcrystal_i2c",
     remote = "http://github.com/kkevlar/LiquidCrystal_I2C.git",
     branch = "master",
     build_file_content = """
