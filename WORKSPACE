@@ -23,7 +23,7 @@ git_repository(
 
 new_git_repository(
     name = "adafruit_motor_shield",
-    remote = "https://github.com/adafruit/Adafruit_Motor_Shield_V2_Library",
+    remote = "https://github.com/kkevlar/Adafruit_Motor_Shield_V2_Library",
     branch = "master",
     build_file_content = """
 exports_files(["Adafruit_MotorShield.cpp"])
@@ -34,6 +34,15 @@ cc_library(
     name = "motorshield_library",
     srcs = ["Adafruit_MotorShield.cpp"],
     hdrs = ["Adafruit_MotorShield.h"],
+)
+exports_files(["Adafruit_MS_PWMServoDriver.h"])
+exports_files(["Adafruit_MS_PWMServoDriver.cpp"])
+
+# you can also create targets
+cc_library(
+    name = "servo_motorshield_library",
+    srcs = ["Adafruit_MS_PWMServoDriver.cpp"],
+    hdrs = ["Adafruit_MS_PWMServoDriver.h"],
 )
 """,
 )

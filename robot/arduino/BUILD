@@ -48,9 +48,17 @@ platformio_library(
 )
 
 platformio_library(
+    name = "ms_servo",
+    src = "@adafruit_motor_shield//:Adafruit_MS_PWMServoDriver.cpp",
+    hdr = "@adafruit_motor_shield//:Adafruit_MS_PWMServoDriver.h",
+)
+
+platformio_library(
     name = "motorshield",
     src = "@adafruit_motor_shield//:Adafruit_MotorShield.cpp",
     hdr = "@adafruit_motor_shield//:Adafruit_MotorShield.h",
+    add_hdrs = ["@adafruit_motor_shield//:Adafruit_MS_PWMServoDriver.h"],
+    deps = [":ms_servo"],
 )
 
 platformio_library(
