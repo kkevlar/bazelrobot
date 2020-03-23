@@ -2,6 +2,7 @@
 #include <Adafruit_MotorShield.h>
 #include <Wire.h>
 #include "wheel.h"
+#include "robottypes.h"
 
 Adafruit_MotorShield AFMS_LEFT(
     MOTOR_SHEILD_ADDRESS_LEFT);  // Rightmost jumper closed

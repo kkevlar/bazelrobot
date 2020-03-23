@@ -2,14 +2,6 @@
 #ifndef SHOOT_H
 #define SHOOT_H
 
-#include "testoptions.h"
-#include <Wire.h>
-#include <Servo.h>
-#include <Adafruit_MotorShield.h>
-#include "wiring.h"
-#include "lcd.h"
-
-
 void shoot_init(void);
 void shoot_flywheel_left_start();
 void shoot_flywheel_right_start();

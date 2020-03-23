@@ -2,7 +2,7 @@
 #define DRIVE_H
 
 #include <inttypes.h>
-#include "robot/logic/robottypes.h"
+#include "robottypes.h"
 
 struct _drive_vector_t_
 {

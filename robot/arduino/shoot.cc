@@ -1,5 +1,9 @@
 
 #include "shoot.h"
+#include <Adafruit_MotorShield.h>
+#include <Wire.h>
+#include <Servo.h>
+#include "robottypes.h"
 
 Adafruit_MotorShield AFMS_SHOOT(MOTOR_SHEILD_ADDRESS_SHOOT);
 Servo flywheel_left;

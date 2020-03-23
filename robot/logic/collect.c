@@ -1,5 +1,6 @@
 
 #include "collect.h"
+#include "control.h"
 
 void collect_init(void)
 {

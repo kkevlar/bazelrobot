@@ -1,7 +1,7 @@
 #include "drive.h"
 
 #include <math.h>
-#include "robot/hwhdrs/wheel.h"
+#include "wheel.h"
 
 void drive_init(void) { wheel_init(); }
 

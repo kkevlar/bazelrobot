@@ -65,7 +65,9 @@ platformio_library(
     name = "wheel",
     src = "wheel.cc",
     hdr = "//robot/hwhdrs:wheel_h_fg",
-    add_hdrs = ["@adafruit_motor_shield//:Adafruit_MotorShield.h"],
+    add_hdrs = ["@adafruit_motor_shield//:Adafruit_MS_PWMServoDriver.h",
+                "@adafruit_motor_shield//:Adafruit_MotorShield.h",
+                "//robot/logic:robottypes_h_fg",],
 )
 
 platformio_library(
