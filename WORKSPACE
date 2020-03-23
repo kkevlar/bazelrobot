@@ -17,14 +17,16 @@ http_archive(
 
 git_repository(
     name = "platformio_rules",
-    remote = "http://github.com/kkevlar/platformio_rules.git",
-    branch = "fix-click",
+    remote = "http://github.com/mum4k/platformio_rules.git",
+    commit = "882a88e4be94a3b0aadf8d694c012ffeec5eb32a",
+    shallow_since = "1584297373 -0400",
 )
 
 new_git_repository(
     name = "adafruit_motor_shield",
     remote = "https://github.com/kkevlar/Adafruit_Motor_Shield_V2_Library",
-    branch = "master",
+    commit = "2749a413728570b4c35efc9cdf1119e899264569",
+    shallow_since = "1584911129 -0700",
     build_file_content = """
 exports_files(["Adafruit_MotorShield.cpp"])
 exports_files(["Adafruit_MotorShield.h"])
@@ -50,7 +52,8 @@ cc_library(
 new_git_repository(
     name = "liquidcrystal_i2c",
     remote = "http://github.com/kkevlar/LiquidCrystal_I2C.git",
-    branch = "master",
+    commit = "c976ad2dc682d40d994797761f39d4d9f0cc8196",
+    shallow_since = "1554826820 -0400",
     build_file_content = """
 exports_files(["LiquidCrystal_I2C.h"])
 exports_files(["LiquidCrystal_I2C.cpp"])
