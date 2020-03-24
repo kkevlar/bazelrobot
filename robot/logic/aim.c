@@ -1,4 +1,3 @@
-
 #include <stdint.h>
 #include "aim.h"
 #include "robottypes.h"
@@ -112,10 +111,10 @@ void aim_position_pre_roomba(direction_t dir_target,
         args_target.mm_target = mm_target;
         args_target.mm_accuracy = AIM_PRE_MM_ACCURACY;
 
-        delay(AIM_PRE_IN_BETWEEN_ECHO_TESTS_DELAY_MS);
+        inodelay(AIM_PRE_IN_BETWEEN_ECHO_TESTS_DELAY_MS);
         p_control_non_block(&result_wall, &args_wall);
         vec_wall.speed = (result_wall.result_speed);
-        delay(AIM_PRE_IN_BETWEEN_ECHO_TESTS_DELAY_MS);
+        inodelay(AIM_PRE_IN_BETWEEN_ECHO_TESTS_DELAY_MS);
         p_control_non_block(&result_target, &args_target);
         vec_target.speed = (result_target.result_speed);
         vec_wall.speed = (result_wall.result_speed);
@@ -201,7 +200,7 @@ void aim_position_final_helper(direction_t dir_target, float mm_target)
         go(vec_result);
 
         if (result_target.end_condition_count > 4) break;
-        delay(AIM_FINAL_IN_BETWEEN_ECHO_TESTS_DELAY_MS);
+        inodelay(AIM_FINAL_IN_BETWEEN_ECHO_TESTS_DELAY_MS);
     }
 }
 
@@ -242,7 +241,7 @@ void janky()
     go(vec);
     while (echo_test_mm(direction_to_echo_pin(DIRECTION_ID_RIGHT)) < 720)
     {
-        delay(10);
+        inodelay(10);
     }
 }
 
@@ -263,7 +262,7 @@ void aim(aim_location_t loc)
     else
     {
         go_back();
-        delay(200);
+        inodelay(200);
         go_stop();
         while (1)
         {

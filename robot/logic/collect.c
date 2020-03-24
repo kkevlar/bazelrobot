@@ -60,7 +60,7 @@ void position_for_collection(direction_t dir_wall, direction_t dir_target, float
 
         p_control_non_block(&result_wall,&args_wall);
         vec_wall.speed = (result_wall.result_speed);
-        delay(COLLECT_PRE_IN_BETWEEN_ECHO_TESTS_DELAY_MS);
+        inodelay(COLLECT_PRE_IN_BETWEEN_ECHO_TESTS_DELAY_MS);
         p_control_non_block(&result_target,&args_target);
         vec_target.speed = (result_target.result_speed);
         vec_wall.speed = (result_wall.result_speed);
@@ -80,7 +80,7 @@ void position_for_collection(direction_t dir_wall, direction_t dir_target, float
             break;
 
         collect_im_bored();
-        delay(COLLECT_PRE_IN_BETWEEN_ECHO_TESTS_DELAY_MS);
+        inodelay(COLLECT_PRE_IN_BETWEEN_ECHO_TESTS_DELAY_MS);
     }
 }
 
@@ -96,10 +96,10 @@ void roomba(direction_t dir_wall)
     while(switch_test_up(dir_wall))
     {
         collect_im_bored();
-        delay(20);
+        inodelay(20);
     }
 
-    delay(COLLECT_ROOMBA_PERSIST_MS);
+    inodelay(COLLECT_ROOMBA_PERSIST_MS);
 }
 
 
@@ -110,30 +110,30 @@ void backglide()
     vec.degrees = 190;
     while(echo_test_mm(direction_to_echo_pin(DIRECTION_ID_LEFT)) > 550)
     {
-        delay(5);
+        inodelay(5);
         go(vec);
     }
     while(echo_test_mm(direction_to_echo_pin(DIRECTION_ID_LEFT)) > 550)
     {
-        delay(5);
+        inodelay(5);
 
         go(vec);
     }
     while(echo_test_mm(direction_to_echo_pin(DIRECTION_ID_LEFT)) > 550)
     {
-        delay(5);
+        inodelay(5);
 
         go(vec);
     }
     while(echo_test_mm(direction_to_echo_pin(DIRECTION_ID_LEFT)) > 550)
     {
-        delay(5);
+        inodelay(5);
 
         go(vec);
     }
     while(echo_test_mm(direction_to_echo_pin(DIRECTION_ID_LEFT)) > 550)
     {
-        delay(5);
+        inodelay(5);
 
         go(vec);
     }
@@ -185,7 +185,7 @@ void do_collection(direction_t dir_wall, direction_t dir_target, float mm_target
             break;
 
         collect_im_bored();
-        delay(COLLECT_DO_IN_BETWEEN_ECHO_TESTS_DELAY_MS);
+        inodelay(COLLECT_DO_IN_BETWEEN_ECHO_TESTS_DELAY_MS);
     }
 }
 
@@ -230,7 +230,7 @@ void position_after_yeet(direction_t dir_wall, direction_t dir_target, float mm_
 
         p_control_non_block(&result_wall,&args_wall);
         vec_wall.speed = (result_wall.result_speed);
-        delay(COLLECT_PRE_IN_BETWEEN_ECHO_TESTS_DELAY_MS);
+        inodelay(COLLECT_PRE_IN_BETWEEN_ECHO_TESTS_DELAY_MS);
         p_control_non_block(&result_target,&args_target);
         vec_target.speed = (result_target.result_speed);
         vec_wall.speed = (result_wall.result_speed);
@@ -250,7 +250,7 @@ void position_after_yeet(direction_t dir_wall, direction_t dir_target, float mm_
             break;
 
         collect_im_bored();
-        delay(COLLECT_PRE_IN_BETWEEN_ECHO_TESTS_DELAY_MS);
+        inodelay(COLLECT_PRE_IN_BETWEEN_ECHO_TESTS_DELAY_MS);
     }
 }
 
@@ -288,7 +288,7 @@ void yeet_away_from_wall(direction_t dir_wall, float mm_target)
             break;
 
         collect_im_bored();
-        delay(COLLECT_YEET_AWAY_DELAY_MS);
+        inodelay(COLLECT_YEET_AWAY_DELAY_MS);
     }
 }
 
@@ -336,7 +336,7 @@ void collection_victory_lap()
 {
     while(echo_test_mm(direction_to_echo_pin(DIRECTION_ID_RIGHT)) > 710)
     {
-        delay(5);
+        inodelay(5);
         go_right();
     }
     collect_right();

@@ -52,12 +52,12 @@ void simple_aim_n_shoot()
     // shoot_conveyor_both_start();
     // shoot_indexer_start();
 
-    time_start = millis();
+    time_start = inomillis();
 
-    while (millis() - time_start < 2000)
+    while (inomillis() - time_start < 2000)
     {
         // shoot_indexer_spam_forward();
-        delay(10);
+        inodelay(10);
     }
     lcd_print_bot("Pew! Pew! Pew!");
 
