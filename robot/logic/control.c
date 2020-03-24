@@ -1,8 +1,7 @@
 
-#include "robot/logic/control.h"
+#include "control.h"
 #include <stdint.h>
-
-#include "robot/hwhdrs/echo.h"
+#include "echo.h"
 
 static float signum(float f)
 {

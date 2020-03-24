@@ -11,6 +11,10 @@ platformio_library(
     hdr = "//robot/hwhdrs:echo_h_fg",
 )
 platformio_library(
+    name = "robotime",
+    hdr = "//robot/hwhdrs:robotime_h_fg",
+)
+platformio_library(
     name = "shoot",
     src = "shoot.cc",
     hdr = "//robot/hwhdrs:shoot_h_fg",
@@ -89,6 +93,7 @@ platformio_project(
     framework = "arduino",
     platform = "atmelavr",
     deps = [
+        ":robotime",
         ":liquidcrystal",
         ":robottypes",
         ":switch",

@@ -67,3 +67,16 @@ filegroup(
     visibility = ["//visibility:public"],
 )
 
+cc_library(
+    name = "robotime_hdr",
+    hdrs = ["robotime.h"],
+    visibility = ["//visibility:public"],
+)
+
+filegroup(
+    name = "robotime_h_fg",
+    srcs = [
+        "robotime.h",
+    ],
+    visibility = ["//visibility:public"],
+)

@@ -1,6 +1,12 @@
 
 #include "collect.h"
+#include "drive.h"
 #include "control.h"
+#include "echo.h"
+#include "switch.h"
+#include "robottypes.h"
+#include "robotime.h"
+
 
 void collect_init(void)
 {

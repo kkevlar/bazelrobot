@@ -1,8 +1,7 @@
 #ifndef ECHO_H
 #define ECHO_H
 
-#include "testoptions.h"
-#include "wiring.h"
+#include "robottypes.h"
 
 void echo_init();
 float echo_test_mm(uint8_t pin);

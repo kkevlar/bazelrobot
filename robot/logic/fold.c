@@ -4,6 +4,8 @@
 #include "drive.h"
 #include "shoot.h"
 #include "collect.h"
+#include "echo.h"
+#include "shoot.h"
 
 const char* const init_message = "Init......." ;
 const char* const success_message = " success! :) " ;
@@ -19,9 +21,9 @@ void main_setup()
     drive_init();
     echo_init();
     collect_init();
-    hoot_init();
+    shoot_init();
 
-    lcd_print_bot(success_mesage);
+    lcd_print_bot(success_message);
 }
 
 int num = 0;

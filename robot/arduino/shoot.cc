@@ -4,6 +4,7 @@
 #include <Wire.h>
 #include <Servo.h>
 #include "robottypes.h"
+#include "lcd.h"
 
 Adafruit_MotorShield AFMS_SHOOT(MOTOR_SHEILD_ADDRESS_SHOOT);
 Servo flywheel_left;
