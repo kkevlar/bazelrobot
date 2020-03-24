@@ -2,13 +2,6 @@
 #include <Arduino.h>
 #include "fold.h"
 
-void setup()
-{
-main_setup();
-}
+void setup() { main_setup(); }
 
-void loop()
-{
-main_loop();
-}
-
+void loop() { main_loop(); }

@@ -56,9 +56,48 @@ cc_library(
 )
 
 cc_library(
+    name = "aim_hdr",
+    hdrs = ["aim.h"],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "aim_c_as_hdr",
+    textual_hdrs = ["aim.c"],
+    deps = [
+        ":aim_hdr",
+        ],
+    visibility = ["//visibility:public"],
+)
+
+filegroup(
+    name = "aim_h_fg",
+    srcs = [
+        "aim.h",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+filegroup(
+    name = "aim_c_fg",
+    srcs = [
+        "aim.c",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "aim",
+    srcs = ["aim.c"],
+    deps = [
+        ":aim_hdr",
+        ],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
     name = "collect_hdr",
     hdrs = ["collect.h"],
-    deps = [":robottypes_hdr",],
     visibility = ["//visibility:public"],
 )
 

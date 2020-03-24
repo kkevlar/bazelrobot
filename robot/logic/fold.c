@@ -1,14 +1,15 @@
-#include "lcd.h"
-#include "wheel.h"
-#include "switch.h"
-#include "drive.h"
-#include "shoot.h"
+#include "aim.h"
 #include "collect.h"
+#include "drive.h"
 #include "echo.h"
+#include "inotime.h"
+#include "lcd.h"
 #include "shoot.h"
+#include "switch.h"
+#include "wheel.h"
 
-const char* const init_message = "Init......." ;
-const char* const success_message = " success! :) " ;
+const char* const init_message = "Init.......";
+const char* const success_message = " success! :) ";
 
 void main_setup()
 {
@@ -31,25 +32,19 @@ int num = 0;
 void simple_aim_n_shoot()
 {
     aim_location_t loc;
-    char buf[17];
+    char buf[17] = "Gonna Shoot #";
     long time_start;
 
     loc = aim_select_location();
-    if(loc < 1 || loc > 3)
-        loc = aim_select_location();
-    if(loc < 1 || loc > 3)
-        loc = aim_select_location();
-    if(loc < 1 || loc > 3)
-        loc = aim_select_location();
-    if(loc < 1 || loc > 3)
-        loc = aim_select_location();
-    if(loc < 1 || loc > 3)
-        loc = aim_select_location();
-    if(loc < 1 || loc > 3)
-        loc = aim_select_location();
-    if(loc < 1 || loc > 3)
-        loc = ((num++)%3)+1;
-    snprintf(buf, 16, "Gonna shoot @%d", loc);
+    if (loc < 1 || loc > 3) loc = aim_select_location();
+    if (loc < 1 || loc > 3) loc = aim_select_location();
+    if (loc < 1 || loc > 3) loc = aim_select_location();
+    if (loc < 1 || loc > 3) loc = aim_select_location();
+    if (loc < 1 || loc > 3) loc = aim_select_location();
+    if (loc < 1 || loc > 3) loc = aim_select_location();
+    if (loc < 1 || loc > 3) loc = ((num++) % 3) + 1;
+
+    buf[12] = loc + '0';
     lcd_print_top(buf);
     aim(loc);
     go_stop();
@@ -59,7 +54,7 @@ void simple_aim_n_shoot()
 
     time_start = millis();
 
-    while(millis() - time_start < 2000)
+    while (millis() - time_start < 2000)
     {
         // shoot_indexer_spam_forward();
         delay(10);
@@ -94,15 +89,12 @@ void main_game_a_loop(void)
     // go_stop();
     // delay(5000);
 
-    while(1)
+    while (1)
     {
-
-
         collection_victory_lap();
         // collection_victory_lap();
         go_stop();
         simple_aim_n_shoot();
-        
     }
 }
 
@@ -110,6 +102,5 @@ void main_loop()
 {
     go_stop();
 
-        main_game_a_loop();
+    main_game_a_loop();
 }
-

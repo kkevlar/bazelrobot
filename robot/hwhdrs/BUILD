@@ -68,15 +68,28 @@ filegroup(
 )
 
 cc_library(
-    name = "robotime_hdr",
-    hdrs = ["robotime.h"],
+    name = "inotime",
+    hdrs = ["inotime.h"],
     visibility = ["//visibility:public"],
 )
 
 filegroup(
-    name = "robotime_h_fg",
+    name = "inotime_h_fg",
     srcs = [
-        "robotime.h",
+        "inotime.h",
+    ],
+    visibility = ["//visibility:public"],
+)
+cc_library(
+    name = "inorandom",
+    hdrs = ["inorandom.h"],
+    visibility = ["//visibility:public"],
+)
+
+filegroup(
+    name = "inorandom_h_fg",
+    srcs = [
+        "inorandom.h",
     ],
     visibility = ["//visibility:public"],
 )

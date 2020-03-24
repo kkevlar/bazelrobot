@@ -11,8 +11,8 @@ platformio_library(
     hdr = "//robot/hwhdrs:echo_h_fg",
 )
 platformio_library(
-    name = "robotime",
-    hdr = "//robot/hwhdrs:robotime_h_fg",
+    name = "inotime",
+    hdr = "//robot/hwhdrs:inotime_h_fg",
 )
 platformio_library(
     name = "shoot",
@@ -25,9 +25,19 @@ platformio_library(
     hdr = "//robot/hwhdrs:switch_h_fg",
 )
 platformio_library(
+    name = "inorandom",
+    src = "inorandom.cc",
+    hdr = "//robot/hwhdrs:inorandom_h_fg",
+)
+platformio_library(
     name = "collect",
     src = "//robot/logic:collect_c_fg",
     hdr = "//robot/logic:collect_h_fg",
+)
+platformio_library(
+    name = "aim",
+    src = "//robot/logic:aim_c_fg",
+    hdr = "//robot/logic:aim_h_fg",
 )
 platformio_library(
     name = "control",
@@ -93,16 +103,20 @@ platformio_project(
     framework = "arduino",
     platform = "atmelavr",
     deps = [
-        ":robotime",
+        ":inotime",
+        ":inorandom",
+        ":echo",
+        ":ms_servo",
+        ":motorshield",
         ":liquidcrystal",
         ":robottypes",
         ":switch",
-        ":echo",
         ":lcd",
         ":shoot",
         ":wheel",
         ":collect",
         ":drive",
+        ":aim",
         ":control",
         ":fold",
     ],
