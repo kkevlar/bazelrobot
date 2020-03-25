@@ -26,28 +26,28 @@ platformio_library(
 )
 platformio_library(
     name = "echo",
-    src = "echo.cc",
+    src = "echo.cpp",
     hdr = "//robot/hwhdrs:echo_h_fg",
 )
 platformio_library(
     name = "inotime",
-src = "inotime.cc",
+src = "inotime.cpp",
     hdr = "//robot/hwhdrs:inotime_h_fg",
 )
 platformio_library(
     name = "shoot",
-    src = "shoot.cc",
+    src = "shoot.cpp",
     hdr = "//robot/hwhdrs:shoot_h_fg",
     deps = [":motorshield",],
 )
 platformio_library(
     name = "switch",
-    src = "switch.cc",
+    src = "switch.cpp",
     hdr = "//robot/hwhdrs:switch_h_fg",
 )
 platformio_library(
     name = "inorandom",
-    src = "inorandom.cc",
+    src = "inorandom.cpp",
     hdr = "//robot/hwhdrs:inorandom_h_fg",
 )
 platformio_library(
@@ -79,7 +79,7 @@ platformio_library(
 
 platformio_library(
     name = "wheel",
-    src = "wheel.cc",
+    src = "wheel.cpp",
     hdr = "//robot/hwhdrs:wheel_h_fg",
     add_hdrs = ["@adafruit_motor_shield//:Adafruit_MS_PWMServoDriver.h",
                 "@adafruit_motor_shield//:Adafruit_MotorShield.h",
@@ -88,7 +88,7 @@ platformio_library(
 
 platformio_library(
     name = "lcd",
-    src = "lcd.cc",
+    src = "lcd.cpp",
     hdr = "//robot/hwhdrs:lcd_h_fg",
     add_hdrs = ["@liquidcrystal_i2c//:LiquidCrystal_I2C.h",],
 )

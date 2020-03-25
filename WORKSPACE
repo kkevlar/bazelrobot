@@ -17,9 +17,8 @@ http_archive(
 
 git_repository(
     name = "platformio_rules",
-    remote = "http://github.com/mum4k/platformio_rules.git",
-    commit = "882a88e4be94a3b0aadf8d694c012ffeec5eb32a",
-    shallow_since = "1584297373 -0400",
+    remote = "http://github.com/kkevlar/platformio_rules.git",
+    branch = "master",
 )
 
 new_git_repository(
