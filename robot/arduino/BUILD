@@ -100,7 +100,7 @@ platformio_library(
 
 platformio_project(
     name = "roborodentia",
-    src = "main.cc",
+    src = "main.cpp",
     board = "uno",
     framework = "arduino",
     platform = "atmelavr",
